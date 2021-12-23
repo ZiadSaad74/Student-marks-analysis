@@ -18,6 +18,8 @@
 # unique(StudentsPerformance$`test preparation course`)
 # StudentsPerformance$`test preparation course`[StudentsPerformance$`test preparation course`=="completed"]<-1
 # StudentsPerformance$`test preparation course`[StudentsPerformance$`test preparation course`=="none"]<-0
+# install.packages("ggplot2")
+library(ggplot2)
 ggplot(StudentsPerformance, aes(x = StudentsPerformance$parental.level.of.education, y =StudentsPerformance$gender , fill = StudentsPerformance$math.score)) +
   geom_col() +scale_x_discrete() +coord_polar("y")
 # StudentsPerformance <- transform(StudentsPerformance, gender = as.numeric(gender), 
@@ -34,3 +36,11 @@ ggplot(StudentsPerformance, aes(x=reading.score, fill=parental.level.of.educatio
   geom_histogram( color="#69b3a2", alpha=0.6, position = 'identity') +
   theme_ipsum() +
   labs(fill="")
+StudentsPerformance$cities=worldcities$city
+
+install.packages(c("cowplot", "googleway", "ggplot2", "ggrepel", 
+                   "ggspatial", "libwgeom", "sf", "rnaturalearth", "rnaturalearthdata"))
+library("sf")
+
+write.csv(StudentsPerformance,"/Applications/python/Student-marks-analysis/afteraddingcities.csv", row.names = TRUE)
+
